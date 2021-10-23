@@ -153,7 +153,9 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
    @return  The number of nodes in the "whole" tree */
    public int getNumberOfNodes()
    {
-      return getNumberOfNodes(root);
+      if(root != null)
+         return getNumberOfNodes(root);
+      return 0;
    } // end getNumberOfNodes
    
    /** A Recursive Method in the BinaryTree Class   
