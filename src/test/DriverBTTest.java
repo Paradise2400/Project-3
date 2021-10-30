@@ -1,8 +1,15 @@
+package test;
+
+import main.BinaryTree;
+import main.DriverBT;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DriverBTTest {
+    /**
+     * Testing for DriverBT class createTree method
+     */
     @Test
     void createTree2() {
         BinaryTree<String> aTree = new BinaryTree<>();

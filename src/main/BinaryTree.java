@@ -1,22 +1,43 @@
+ package main;
+
 public class BinaryTree<T> implements BinaryTreeInterface<T>
 {
    private BinaryNode<T> root;
 
+   /**
+    * Initializing constructor
+    */
    public BinaryTree()
    {
       root = null;
    } // end default constructor
 
+   /**
+    * Initializes new tree with param rootData
+    * @param rootData is root of the tree
+    */
    public BinaryTree(T rootData)
    {
       root = new BinaryNode<>(rootData);
    } // end constructor
 
+   /**
+    * Initializes tree with:
+    * @param rootData as root of tree
+    * @param leftTree as left child of root
+    * @param rightTree as right right child of root
+    */
    public BinaryTree(T rootData, BinaryTree<T> leftTree, BinaryTree<T> rightTree)
    {
       initializeTree(rootData, leftTree, rightTree);
    } // end constructor
 
+   /**
+    * Calls initializeTree
+    * @param rootData   The object that is the data for the new tree's root.
+    * @param leftTree   The left subtree of the new tree.
+    * @param rightTree  The right subtree of the new tree.
+    */
    public void setTree(T rootData, BinaryTreeInterface<T> leftTree,
                                    BinaryTreeInterface<T> rightTree)
    {
@@ -24,11 +45,19 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
                                (BinaryTree<T>)rightTree);
    } // end setTree
 
+   /**
+    * Sets root data
+    * @param rootData  The object that is the data for the tree's root.
+    */
    public void setRootData(T rootData)
    {
       root.setData(rootData);
    } // end setRootData
-   
+
+   /**
+    *
+    * @return root's data
+    */
    public T getRootData()
    {
       if (isEmpty())
@@ -36,27 +65,48 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
       else
          return root.getData();
    } // end getRootData
-   
+
+   /**
+    *
+    * @return true if tree is empty, else false
+    */
    public boolean isEmpty()
    {
       return root == null;
    } // end isEmpty
-   
+
+   /**
+    * Removes root from memory
+    */
    public void clear()
    {
       root = null;
    } // end clear
-   
+
+   /**
+    * Sets root node to be param
+    * @param rootNode of type BinaryNode
+    */
    protected void setRootNode(BinaryNode<T> rootNode)
    {
       root = rootNode;
    } // end setRootNode
-   
+
+   /**
+    *
+    * @return this tree's root node
+    */
    protected BinaryNode<T> getRootNode()
    {
       return root;
    } // end getRootNode
-   
+
+   /**
+    * Creates tree with its rootData and leftTree as its left Child and rightTree as its rightChild
+    * @param rootData
+    * @param leftTree
+    * @param rightTree
+    */
    private void initializeTree(T rootData, BinaryTree<T> leftTree, BinaryTree<T> rightTree)
    {
       root = new BinaryNode<>(rootData);
@@ -92,44 +142,44 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
     *          4. public void postorderTraverse_binaryNodeMethod() */
    
    /** calls postorderTraverse(BinaryNode<T> node)
-    * prints (using post-order traversal) all nodes in the "whole" tree */
-   public void postorderTraverse()
+    * @return (using post-order traversal) all nodes in the "whole" tree */
+   public String postorderTraverse()
    {
+      String s = "";
       if(root!=null)
       {
-         postorderTraverse(root);
+         s = postorderTraverse(root);
       }
-      else
-      {
-         System.out.println("Cannot call PostorderTraverse because root node may be missing/null");
-      }
-
+      return s;
    }
    
    /** A Recursive Method in the BinaryTree Class   
-    * prints (using post-order traversal) all nodes in the subtree rooted at this node.*/
-   private void postorderTraverse(BinaryNode<T> node)
+    * @return (using post-order traversal) all nodes in the subtree rooted at this node.*/
+   private String postorderTraverse(BinaryNode<T> node)
    {
+      String s = "";
       if(node!=null)
       {
-         postorderTraverse(node.getLeftChild());
-         postorderTraverse(node.getRightChild());
-         System.out.println(node.getData());
+         String traversalLeft = "";
+         String traversalRight = "";
+         traversalLeft = postorderTraverse(node.getLeftChild());
+         traversalRight = postorderTraverse(node.getRightChild());
+         s = traversalLeft + traversalRight + node.getData();
+//         System.out.print(node.getData());
       }
+      return s;
    }
  
    /** The following calls postorderTraverse_binaryNodeMethod(), which is a recursive binaryNode class method   
-    * prints (using post-order traversal) all nodes in the "whole" tree */
-   public void postorderTraverse_callBinaryNodeMethod()
+    * @return (using post-order traversal) all nodes in the "whole" tree */
+   public String postorderTraverse_callBinaryNodeMethod()
    {
+      String s ="";
       if(root!=null)
       {
-         root.postorderTraverse_binaryNodeMethod();
+         s = root.postorderTraverse_binaryNodeMethod();
       }
-      else
-      {
-         System.out.println("Unable to access node. Missing root node. ");
-      }
+      return s;
    }
    
    /** -------------------------------------------------------------------- */

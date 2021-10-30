@@ -1,19 +1,34 @@
-class BinaryNode<T>
+ package main;
+
+public class BinaryNode<T>
 {
    private T             data;
    private BinaryNode<T> leftChild;  // Reference to left child
    private BinaryNode<T> rightChild; // Reference to right child
 
+   /**
+    * initializes tree with root as null
+    */
    public BinaryNode()
    {
       this(null); // Call next constructor
    } // end default constructor
 
+   /**
+    * Initializes node with parameter passed in
+    * @param dataPortion object of type T
+    */
    public BinaryNode(T dataPortion)
    {
       this(dataPortion, null, null); // Call next constructor
    } // end constructor
 
+   /**
+    * Creates a node
+    * @param dataPortion node's data
+    * @param newLeftChild node's left child
+    * @param newRightChild node's right child
+    */
    public BinaryNode(T dataPortion, BinaryNode<T> newLeftChild,
                                     BinaryNode<T> newRightChild)
    {
@@ -103,19 +118,24 @@ class BinaryNode<T>
    /** --------------------------------------------------------------------
     * Part of Task 1 */
    /** A Recursive Method in the BinaryNode Class   
-    * prints (using post-order traversal) all nodes of the subtree rooted at "this" node */
-   public void postorderTraverse_binaryNodeMethod()
+    * prints (using post-order traversal) all nodes of the subtree rooted at "this" node
+    @return String of all the nodes in the postorder
+    * */
+   public String postorderTraverse_binaryNodeMethod()
    {
+      String s = "";
+      String traversalLeft = "";
+      String traversalRight = "";
       if(this.hasLeftChild())
       {
-         this.getLeftChild().postorderTraverse_binaryNodeMethod();
+         traversalLeft =  this.getLeftChild().postorderTraverse_binaryNodeMethod();
       }
       if(this.hasRightChild())
       {
-         this.getRightChild().postorderTraverse_binaryNodeMethod();
+         traversalRight = this.getRightChild().postorderTraverse_binaryNodeMethod();
       }
-      System.out.println(this.getData());
-
+      s = traversalLeft + traversalRight + this.getData();
+      return s;
    }
    
    /**-------------------------------------------------------------------- 

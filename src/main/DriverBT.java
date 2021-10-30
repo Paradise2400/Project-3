@@ -1,4 +1,6 @@
-public class DriverBT 
+ package main;
+
+public class DriverBT
 {
 	public static void main(String[] args)
 	{
@@ -7,12 +9,9 @@ public class DriverBT
 		createTree1(aTree);
 
 		System.out.println("(binaryTree) post-order: ");
-		aTree.postorderTraverse();
-
+		System.out.println(aTree.postorderTraverse());
 		System.out.println("(binaryNode) post-order: ");
-		aTree.postorderTraverse_callBinaryNodeMethod();
-
-		System.out.println();
+		System.out.println(aTree.postorderTraverse_callBinaryNodeMethod());
 		
 		System.out.println("(BinaryTree) Height of tree is " + aTree.getHeight());
 		System.out.println("(BinaryNode) Height of tree is " + aTree.getHeight_callBinaryNodeMethod());
@@ -30,12 +29,13 @@ public class DriverBT
 		createTree2(aTree2);
 
 		System.out.println("(binaryTree) post-order: ");
-		aTree2.postorderTraverse();
+
+		System.out.println(aTree2.postorderTraverse());
 
 		System.out.println("(binaryNode) post-order: ");
-		aTree2.postorderTraverse_callBinaryNodeMethod();
 
-		System.out.println();
+
+		System.out.println(aTree2.postorderTraverse_callBinaryNodeMethod());
 		
 		System.out.println("(BinaryTree) Height of tree is " + aTree2.getHeight());
 		System.out.println("(BinaryNode) Height of tree is " + aTree2.getHeight_callBinaryNodeMethod());

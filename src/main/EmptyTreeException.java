@@ -1,3 +1,5 @@
+ package main;
+
 public class EmptyTreeException extends RuntimeException
 {
 	public EmptyTreeException()
