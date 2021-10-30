@@ -66,12 +66,15 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
       
       if ((rightTree != null) && !rightTree.isEmpty())
       {
-         if (rightTree != leftTree)
-            root.setRightChild(rightTree.root);
+         //To prevent user from setting the leftTree and rightTree to refer the same Tree(same memory location).
+         if (rightTree != leftTree) 
+            root.setRightChild(rightTree.root); //
          else
-            root.setRightChild(rightTree.root.copy());
+         //If they are the same tree then we make a copy because if we remove a node/tree from either side then we remove both left and right trees/nodes
+            root.setRightChild(rightTree.root.copy()); 
       } // end if
       
+      // The user can pass the same tree itself 
       if ((leftTree != null) && (leftTree != this))
          leftTree.clear();
       
@@ -92,18 +95,41 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>
     * prints (using post-order traversal) all nodes in the "whole" tree */
    public void postorderTraverse()
    {
+      if(root!=null)
+      {
+         postorderTraverse(root);
+      }
+      else
+      {
+         System.out.println("Cannot call PostorderTraverse because root node may be missing/null");
+      }
+
    }
    
    /** A Recursive Method in the BinaryTree Class   
     * prints (using post-order traversal) all nodes in the subtree rooted at this node.*/
    private void postorderTraverse(BinaryNode<T> node)
    {
+      if(node!=null)
+      {
+         postorderTraverse(node.getLeftChild());
+         postorderTraverse(node.getRightChild());
+         System.out.println(node.getData());
+      }
    }
  
    /** The following calls postorderTraverse_binaryNodeMethod(), which is a recursive binaryNode class method   
     * prints (using post-order traversal) all nodes in the "whole" tree */
    public void postorderTraverse_callBinaryNodeMethod()
    {
+      if(root!=null)
+      {
+         root.postorderTraverse_binaryNodeMethod();
+      }
+      else
+      {
+         System.out.println("Unable to access node. Missing root node. ");
+      }
    }
    
    /** -------------------------------------------------------------------- */
